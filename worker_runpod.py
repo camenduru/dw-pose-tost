@@ -20,7 +20,7 @@ def download_file(url, save_dir='/content'):
 
 def generate(input):
     values = input["input"]
-    ref_image = values["ref_image"]
+    ref_image = values["input_image_check"]
     ref_video = values["ref_video"]
     ref_image = download_file(ref_image)
     ref_video = download_file(ref_video)
