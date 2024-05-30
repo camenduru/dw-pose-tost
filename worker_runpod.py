@@ -1,4 +1,4 @@
-import os, subprocess, requests, runpod
+import os, subprocess, requests, json, runpod
 
 discord_token = os.getenv('com_camenduru_discord_token')
 web_uri = os.getenv('com_camenduru_web_uri')
