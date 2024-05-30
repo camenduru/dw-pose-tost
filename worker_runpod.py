@@ -1,5 +1,4 @@
 import os, subprocess, requests, runpod
-from PIL import Image
 
 discord_token = os.getenv('com_camenduru_discord_token')
 web_uri = os.getenv('com_camenduru_web_uri')
@@ -9,44 +8,26 @@ file_path = "/home/camenduru/.local/lib/python3.10/site-packages/mmpose/datasets
 sed_command = f"sed -i 's/resource\\.setrlimit(resource\\.RLIMIT_NOFILE, (soft_limit, hard_limit))/resource.setrlimit(resource.RLIMIT_NOFILE, (4096, 4096))/g' {file_path}"
 subprocess.run(sed_command, shell=True, check=True)
 
-def download_file(url, save_path):
-    try:
-        response = requests.get(url)
-        if response.status_code == 200:
-            with open(save_path, 'wb') as f:
-                f.write(response.content)
-            
-            if save_path.lower().endswith(('.png', '.jpg', '.jpeg', '.gif', '.bmp')):
-                img = Image.open(save_path)
-                if img.format != "PNG":
-                    png_path = os.path.splitext(save_path)[0] + ".png"
-                    img.save(png_path, "PNG")
-                    os.remove(save_path)
-                    print(f"File converted to PNG and saved at {png_path}")
-                    return True
-                else:
-                    print("File is already in PNG format")
-                    return True
-            else:
-                print("File is not an image. No conversion needed.")
-                return True
-        else:
-            print(f"Failed to download file from {url}. Status code: {response.status_code}")
-            return False
-    except Exception as e:
-        print(f"An error occurred: {e}")
-        return False
+def download_file(url, save_dir='/content'):
+    os.makedirs(save_dir, exist_ok=True)
+    file_name = url.split('/')[-1]
+    file_path = os.path.join(save_dir, file_name)
+    response = requests.get(url)
+    response.raise_for_status()
+    with open(file_path, 'wb') as file:
+        file.write(response.content)
+    return file_path
 
 def generate(input):
     values = input["input"]
     ref_image = values["ref_image"]
     ref_video = values["ref_video"]
-    download_file(ref_image, "/content/image.png")
-    download_file(ref_video, "/content/video.mp4")
+    ref_image = download_file(ref_image)
+    ref_video = download_file(ref_video)
     command = [
         "python", "pose_align.py",
-        "--imgfn_refer", "/content/image.png",
-        "--vidfn", "/content/video.mp4"
+        "--imgfn_refer", ref_image,
+        "--vidfn", ref_video
     ]
     pose_align = subprocess.run(command, capture_output=True, text=True)
     print("Standard Output:\n", pose_align.stdout)

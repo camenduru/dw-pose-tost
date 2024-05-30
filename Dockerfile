@@ -1,4 +1,4 @@
-FROM nvidia/cuda:12.4.0-devel-ubuntu22.04
+FROM runpod/pytorch:2.2.1-py3.10-cuda12.1.1-devel-ubuntu22.04
 WORKDIR /content
 ENV PATH="/home/camenduru/.local/bin:${PATH}"
 RUN adduser --disabled-password --gecos '' camenduru && \
@@ -9,7 +9,7 @@ RUN adduser --disabled-password --gecos '' camenduru && \
     chown -R camenduru:camenduru /home && \
     chmod -R 777 /home
 
-RUN apt update -y && apt install software-properties-common -y && add-apt-repository -y ppa:git-core/ppa && apt update -y && apt install -y aria2 git git-lfs unzip ffmpeg python3-pip python-is-python3
+RUN apt update -y && add-apt-repository -y ppa:git-core/ppa && apt update -y && apt install -y aria2 git git-lfs unzip ffmpeg
 
 USER camenduru
 
