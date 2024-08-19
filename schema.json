@@ -1,33 +1,34 @@
 {
-    "$schema": "http://json-schema.org/draft-04/hyper-schema#",
-    "type": "object",
-    "properties": {
-      "readme": {
-        "type": "string",
-        "title": "Effective Whole-body Pose Estimation with Two-stages Distillation",
-        "author": "Zhendong Yang, Ailing Zeng, Chun Yuan, Yu Li",
-        "code": "https://github.com/IDEA-Research/DWPose",
-        "paper": "https://arxiv.org/abs/2307.15880",
-        "tags": [
-          "Video to Video"
-        ],
-        "widget": "readme"
-      },
-      "input_image_check": {
-        "type": "string",
-        "description": "Input Image URL",
-        "widget": "textarea"
-      },
-      "ref_video": {
-        "type": "string",
-        "description": "Input Video URL",
-        "widget": "textarea"
-      }
+  "$schema": "http://json-schema.org/draft-04/hyper-schema#",
+  "type": "object",
+  "properties": {
+    "readme": {
+      "type": "string",
+      "title": "Effective Whole-body Pose Estimation with Two-stages Distillation",
+      "author": "Zhendong Yang, Ailing Zeng, Chun Yuan, Yu Li",
+      "code": "https://github.com/IDEA-Research/DWPose",
+      "paper": "https://arxiv.org/abs/2307.15880",
+      "api": "https://github.com/camenduru/tost-api-examples/blob/main/v1/dw-pose.ipynb",
+      "tags": [
+        "Video to Video"
+      ],
+      "widget": "readme"
     },
-    "buttons": [
-      {
-        "id": "enter",
-        "label": "🥪 Enter"
-      }
-    ]
-  }
+    "input_image_check": {
+      "type": "string",
+      "description": "Input Image URL",
+      "widget": "textarea"
+    },
+    "ref_video": {
+      "type": "string",
+      "description": "Input Video URL",
+      "widget": "textarea"
+    }
+  },
+  "buttons": [
+    {
+      "id": "enter",
+      "label": "🥪 Enter"
+    }
+  ]
+}
