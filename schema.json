@@ -23,6 +23,14 @@
       "type": "string",
       "description": "Input Video URL",
       "widget": "textarea"
+    },
+    "example": {
+      "type": "string",
+      "image1": "https://files.catbox.moe/qqtybz.jpg",
+      "image2": "https://files.catbox.moe/fuk5ba.gif",
+      "image3": "https://fakeimg.pl/600x877/282828/eae0d0/?text=<in%20out>#.png",
+      "image4": "https://files.catbox.moe/j1tzri.gif",
+      "widget": "example"
     }
   },
   "buttons": [
