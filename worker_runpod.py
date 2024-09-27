@@ -4,10 +4,11 @@ file_path = "/home/camenduru/.local/lib/python3.10/site-packages/mmpose/datasets
 sed_command = f"sed -i 's/resource\\.setrlimit(resource\\.RLIMIT_NOFILE, (soft_limit, hard_limit))/resource.setrlimit(resource.RLIMIT_NOFILE, (4096, 4096))/g' {file_path}"
 subprocess.run(sed_command, shell=True, check=True)
 
-def download_file(url, save_dir='/content'):
+def download_file(url, save_dir, file_name):
     os.makedirs(save_dir, exist_ok=True)
-    file_name = url.split('/')[-1]
-    file_path = os.path.join(save_dir, file_name)
+    original_file_name = url.split('/')[-1]
+    _, original_file_extension = os.path.splitext(original_file_name)
+    file_path = os.path.join(save_dir, file_name + original_file_extension)
     response = requests.get(url)
     response.raise_for_status()
     with open(file_path, 'wb') as file:
@@ -18,8 +19,8 @@ def generate(input):
     values = input["input"]
     ref_image = values["input_image_check"]
     ref_video = values["ref_video"]
-    ref_image = download_file(ref_image)
-    ref_video = download_file(ref_video)
+    ref_image = download_file(url=ref_image, save_dir='/content', file_name='ref')
+    ref_video = download_file(url=ref_video, save_dir='/content', file_name='dance')
     command = [
         "python", "pose_align.py",
         "--imgfn_refer", ref_image,
