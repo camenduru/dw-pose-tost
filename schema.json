@@ -14,10 +14,22 @@
       ],
       "widget": "readme"
     },
+    "upload1": {
+      "type": "string",
+      "widget": "upload",
+      "upload_url": "https://litterbox.catbox.moe/resources/internals/api.php",
+      "property": "input_image_check"
+    },
     "input_image_check": {
       "type": "string",
       "description": "Input Image URL",
       "widget": "textarea"
+    },
+    "upload2": {
+      "type": "string",
+      "widget": "upload",
+      "upload_url": "https://litterbox.catbox.moe/resources/internals/api.php",
+      "property": "ref_video"
     },
     "ref_video": {
       "type": "string",
