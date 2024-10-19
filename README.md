@@ -12,4 +12,4 @@ https://github.com/IDEA-Research/DWPose
 https://arxiv.org/abs/2307.15880
 
 ### 🏢 Sponsor
-https://runpod.io
+[https://runpod.io](https://runpod.io?ref=iqi9iy8y)
